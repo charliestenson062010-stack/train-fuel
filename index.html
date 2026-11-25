@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#080b12"><meta name="description" content="TRAIN / FUEL training planner and food log">
+<link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg">
+<title>TRAIN / FUEL</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="brand"><span class="mark">T/F</span><div><h1>TRAIN <b>/</b> FUEL</h1><small>PLAN WITH PURPOSE. FUEL YOUR WORK.</small></div></div><span id="todayLabel" class="date"></span></header>
+<nav class="tabs"><button class="tab active" data-tab="home">HOME</button><button class="tab" data-tab="fuel">FUEL</button><button class="tab" data-tab="train">TRAIN</button><button class="tab" data-tab="notebook">NOTEBOOK</button></nav>
+<main>
+<section id="home" class="page active">
+ <div class="hero"><p class="eyebrow">YOUR TRAINING HQ</p><h2>Show up.<br><span>Put the work in.</span></h2><p class="muted">A simple place to plan sessions, keep notes and log what fuels you.</p></div>
+ <div class="stats"><article><small>FOOD ENTRIES TODAY</small><strong id="homeFood">0</strong></article><article><small>SESSIONS COMPLETED</small><strong id="homeSessions">0</strong></article></div>
+ <div class="panel"><div class="panelhead"><h3>Today's fuel log</h3><button class="textbtn" data-go="fuel">Open fuel →</button></div><div id="homeMeals" class="empty">No food logged yet.</div></div>
+ <div class="panel"><div class="panelhead"><h3>Upcoming training</h3><button class="textbtn" data-go="train">Open planner →</button></div><div id="homeTraining" class="empty">No sessions planned yet.</div></div>
+</section>
+<section id="fuel" class="page">
+ <div class="sectionhead"><p class="eyebrow">NUTRITION JOURNAL</p><h2>Fuel your day.</h2><p class="muted">Log meals and see the nutrition information. Numbers are information, not targets.</p></div>
+ <div class="stats four"><article><small>ENERGY</small><strong id="sumKcal">0</strong><em>kcal</em></article><article><small>PROTEIN</small><strong id="sumP">0</strong><em>g</em></article><article><small>CARBS</small><strong id="sumC">0</strong><em>g</em></article><article><small>FAT</small><strong id="sumF">0</strong><em>g</em></article></div>
+ <div class="panel"><h3>Find a food</h3><div class="searchrow"><input id="foodSearch" placeholder="Search food e.g. banana"><button id="searchBtn" class="primary">SEARCH</button></div><div id="searchResults" class="results"></div><div class="searchrow"><input id="barcodeInput" inputmode="numeric" placeholder="Enter barcode number"><button id="lookupBarcode" class="secondary">LOOK UP</button></div><button id="scanBtn" class="secondary full">▣ SCAN BARCODE WITH CAMERA</button><video id="camera" playsinline hidden></video><p id="scanStatus" class="hint">Camera scanning works on supported Android browsers when hosted over HTTPS.</p></div>
+ <div class="panel"><h3>Add food manually</h3><form id="foodForm" class="formgrid"><label class="wide">Food name<input required id="foodName" placeholder="e.g. Chicken and rice"></label><label>Energy (kcal)<input required type="number" min="0" step="1" id="foodK" value="0"></label><label>Protein (g)<input type="number" min="0" step=".1" id="foodP" value="0"></label><label>Carbs (g)<input type="number" min="0" step=".1" id="foodC" value="0"></label><label>Fat (g)<input type="number" min="0" step=".1" id="foodF" value="0"></label><button class="primary wide">ADD TO TODAY</button></form></div>
+ <div class="panel"><div class="panelhead"><h3>Today's food</h3><button id="clearFood" class="textbtn">Clear today</button></div><div id="foodList" class="list"></div></div>
+</section>
+<section id="train" class="page">
+ <div class="sectionhead"><p class="eyebrow">WEEKLY PLANNER</p><h2>Plan the work.</h2><p class="muted">Plan ahead, add session notes and mark sessions complete.</p></div>
+ <div class="weekbar"><button id="prevWeek" class="round">‹</button><strong id="weekTitle">THIS WEEK</strong><button id="nextWeek" class="round">›</button></div>
+ <div id="weekGrid" class="weekgrid"></div>
+ <div class="panel"><h3 id="editTitle">Add a session</h3><form id="sessionForm" class="formgrid"><label>Day<input id="sessionDate" type="date" required></label><label>Type<select id="sessionType"><option>Boxing</option><option>Gym</option><option>Running</option><option>Conditioning</option><option>Recovery</option><option>Other</option></select></label><label class="wide">Session title<input id="sessionName" placeholder="e.g. Technical boxing"></label><label class="wide">Exercises / plan / notes<textarea id="sessionNotes" rows="4" placeholder="Write your exercises, sets, reps, pace, reminders..."></textarea></label><button class="primary wide">SAVE SESSION</button><button type="button" id="cancelEdit" class="secondary wide" hidden>CANCEL EDIT</button></form></div>
+ <div class="panel"><h3>Sessions this week</h3><div id="sessionList" class="list"></div></div>
+</section>
+<section id="notebook" class="page">
+ <div class="sectionhead"><p class="eyebrow">YOUR TRAINING NOTES</p><h2>Workout notebook.</h2><p class="muted">Save reusable sessions and exercise ideas for later.</p></div>
+ <div class="panel"><h3>Save a workout</h3><form id="templateForm" class="formgrid"><label class="wide">Workout name<input id="templateName" required placeholder="e.g. Full body strength"></label><label>Category<select id="templateType"><option>Boxing</option><option>Gym</option><option>Running</option><option>Conditioning</option><option>Recovery</option><option>Other</option></select></label><label class="wide">Exercises and notes<textarea id="templateNotes" rows="5" placeholder="Exercise — sets × reps — rest"></textarea></label><button class="primary wide">SAVE TO NOTEBOOK</button></form></div>
+ <div class="panel"><h3>Saved workouts</h3><div id="templateList" class="list"></div></div>
+</section>
+<footer>TRAIN / FUEL <span>· Your data stays on this device</span></footer>
+</main><div id="toast" role="status"></div><script src="app.js"></script>
+</body></html>
